@@ -39,7 +39,7 @@ module Data.Atomics
    readMutVarForCAS, casMutVar, casMutVar2,
 
    -- * Memory barriers
-   storeLoadBarrier, loadLoadBarrier, writeBarrier,
+   -- storeLoadBarrier, loadLoadBarrier, writeBarrier,
 
    -- * Deprecated Functions
    fetchAddByteArrayInt
@@ -351,16 +351,16 @@ casMutVar2 mv tick new = IO$ \st ->
 
 #if !(defined(mingw32_HOST_OS) && __GLASGOW_HASKELL__ < 802)
 -- | Memory barrier implemented by the GHC rts (see SMP.h).
-foreign import ccall  unsafe "store_load_barrier" storeLoadBarrier
-  :: IO ()
+-- foreign import ccall  unsafe "store_load_barrier" storeLoadBarrier
+--   :: IO ()
 
 -- | Memory barrier implemented by the GHC rts (see SMP.h).
-foreign import ccall unsafe "load_load_barrier" loadLoadBarrier
-  :: IO ()
+-- foreign import ccall unsafe "load_load_barrier" loadLoadBarrier
+--   :: IO ()
 
 -- | Memory barrier implemented by the GHC rts (see SMP.h).
-foreign import ccall unsafe "write_barrier" writeBarrier
-  :: IO ()
+-- foreign import ccall unsafe "write_barrier" writeBarrier
+--   :: IO ()
 #else
 #warning "importing store_load_barrier and friends from the package's C code."
 
